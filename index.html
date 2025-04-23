@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cartão de Visita - Five Clinic</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card-container {
+      width: 100%;
+      max-width: 600px;
+      perspective: 1000px;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      width: 100%;
+      aspect-ratio: 336/223; /* 89×59 mm em px */
+      height: auto;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+    .card.girado {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      border-top: 5px solid #5ecdcf;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Frente (logo rigorosamente centrado) --- */
+    .card-face.front {
+      background: #6BC9CC;
+      /* centra tudo vertical e horizontal */
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+    .card-face.front .logo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card-face.front .logo img {
+      width: 160px;
+      max-width: 80%;
+      height: auto;
+      display: block;
+    }
+
+    /* --- Verso --- */
+    .card-face.back {
+      background: #fff;
+      transform: rotateY(180deg);
+      padding: 30px 30px 80px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .card-face.back::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('marcadeagua.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.08;
+      z-index: 0;
+    }
+    .card-face.back > *:not(.footer) {
+      position: relative;
+      z-index: 1;
+    }
+    .content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+      width: 100%;
+    }
+    .info {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #555;
+      font-size: 22px;
+    }
+    .info i { font-size: 18px; color: #5ecdcf; margin-top: 3px; }
+    .info span { display: flex; flex-direction: column; }
+
+    /* Footer absoluto na base */
+    .footer {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      background: #5ecdcf;
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+      padding: 10px;
+      border-radius: 0 0 8px 8px;
+      z-index: 1;
+      box-sizing: border-box;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* --- Mobile --- */
+    @media (max-width: 400px) {
+      .card-container { padding: 0 5px; }
+      .card-face.back { padding: 20px 20px 60px; }
+      .card-face.front .logo img { width: 150px; }
+      .info { font-size: 16px; gap: 8px; }
+      .footer { padding: 8px; font-size: 14px; }
+    }
+  </style>
+
+  <script>
+    function sendEmail() {
+      window.location.href = "mailto:info@fiveclinic.pt";
+    }
+    function flipCard() {
+      document.querySelector('.card').classList.toggle('girado');
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="card-container" onclick="flipCard()">
+    <div class="card">
+      <!-- Frente -->
+      <div class="card-face front">
+        <div class="logo">
+          <img src="fiveclinic_logo_hz.png" alt="Logo Five Clinic" />
+        </div>
+      </div>
+
+      <!-- Verso -->
+      <div class="card-face back">
+        <div class="content">
+          <div class="info"><i class="fas fa-phone"></i><span>(+351) 217 576 038 <small>(rede fixa nacional)</small></span></div>
+          <div class="info"><i class="fab fa-whatsapp"></i><span>(+351) 937 894 736 <small>(rede móvel nacional)</small></span></div>
+          <div class="info" onclick="sendEmail()" style="cursor: pointer;"><i class="fas fa-envelope-open-text"></i><span>info@fiveclinic.pt</span></div>
+          <div class="info"><i class="fas fa-home"></i><span>Avenida Duque de Loulé, n.º47, 3.º Dto.<br>1050-086 Lisboa</span></div>
+        </div>
+        <div class="footer"><a href="https://www.fiveclinic.pt" target="_blank">WWW.FIVECLINIC.PT</a></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
