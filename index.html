@@ -51,19 +51,20 @@
       flex-direction: column;
     }
 
-    /* Frente: logo centrado */
     .card-face.front {
       background: #6BC9CC;
       justify-content: center;
       align-items: center;
       padding: 0;
     }
+
     .card-face.front .logo {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .card-face.front .logo img {
       width: 120px;
       max-width: 70%;
@@ -71,7 +72,6 @@
       display: block;
     }
 
-    /* Verso: conteúdo centrado verticalmente */
     .card-face.back {
       background: #fff;
       transform: rotateY(180deg);
@@ -83,6 +83,7 @@
       justify-content: center;
       align-items: flex-start;
     }
+
     .card-face.back::before {
       content: "";
       position: absolute;
@@ -94,6 +95,7 @@
       transform: translate(50%, -50%);
       z-index: 0;
     }
+
     .card-face.back > *:not(.footer) {
       position: relative;
       z-index: 1;
@@ -106,14 +108,14 @@
       width: 100%;
     }
 
-    /* Aumentado o tamanho da letra em .info */
     .info {
       display: flex;
       align-items: flex-start;
       gap: 8px;
       color: #555;
-      font-size: 20px; /* antes 18px */
+      font-size: 20px;
     }
+
     .info i {
       font-size: 1.4rem;
       color: #5ecdcf;
@@ -121,18 +123,33 @@
       min-width: 24px;
       text-align: center;
     }
+
     .info a {
       color: inherit;
       text-decoration: none;
+      font-weight: 400;
     }
 
-    /* Margem maior entre info e botão */
+    .text-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .text-info p {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 400;
+      color: #666;
+    }
+
     .actions {
       display: flex;
       justify-content: center;
       gap: 16px;
-      margin-top: 24px; /* antes 16px */
+      margin-top: 24px;
     }
+
     .actions a {
       background: #5ecdcf;
       color: #fff;
@@ -143,7 +160,6 @@
       font-size: 14px;
     }
 
-    /* Footer permanece igual; link do website branco */
     .footer {
       position: absolute;
       bottom: 0; left: 0;
@@ -158,6 +174,7 @@
       box-sizing: border-box;
       font-size: 14px;
     }
+
     .footer a {
       color: #fff;
       text-decoration: none;
@@ -167,7 +184,7 @@
       .card-container { padding: 0 5px; }
       .card-face.back { padding: 15px 15px 60px; }
       .card-face.front .logo img { width: 100px; }
-      .info { font-size: 18px; gap: 6px; } /* ajustado proporcionalmente */
+      .info { font-size: 18px; gap: 6px; }
       .actions a { font-size: 12px; padding: 4px 8px; }
       .footer { padding: 6px; font-size: 12px; }
     }
@@ -177,6 +194,7 @@
     function sendEmail() {
       window.location.href = "mailto:info@fiveclinic.pt";
     }
+
     function flipCard() {
       document.querySelector('.card').classList.toggle('girado');
     }
@@ -196,17 +214,26 @@
       <!-- Verso -->
       <div class="card-face back">
         <div class="content">
-          <div class="info"><i class="fas fa-phone fa-2x"></i>
-            <a href="tel:+351217576038">(+351) 217 576 038</a>
-			<p> Chamada para rede...</p>
+          <div class="info">
+            <i class="fas fa-phone fa-2x"></i>
+            <div class="text-info">
+              <a href="tel:+351217576038">(+351) 217 576 038</a>
+              <p>Chamada para rede fixa nacional</p>
+            </div>
           </div>
-          <div class="info"><i class="fab fa-whatsapp fa-2x"></i>
-            <a href="https://wa.me/351937894736" target="_blank">(+351) 937 894 736</a>
+          <div class="info">
+            <i class="fab fa-whatsapp fa-2x"></i>
+            <div class="text-info">
+              <a href="https://wa.me/351937894736" target="_blank">(+351) 937 894 736</a>
+              <p>Chamada para rede móvel nacional</p>
+            </div>
           </div>
-          <div class="info"><i class="fas fa-envelope-open-text fa-2x"></i>
+          <div class="info">
+            <i class="fas fa-envelope-open-text fa-2x"></i>
             <a href="mailto:info@fiveclinic.pt">info@fiveclinic.pt</a>
           </div>
-          <div class="info"><i class="fas fa-home fa-2x"></i>
+          <div class="info">
+            <i class="fas fa-home fa-2x"></i>
             <span>Avenida Duque de Loulé, n.º47, 3.º Dto.<br>1050-086 Lisboa</span>
           </div>
         </div>
