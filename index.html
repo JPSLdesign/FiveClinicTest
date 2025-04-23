@@ -19,7 +19,7 @@
 
     .card-container {
       width: 100%;
-      max-width: 600px;
+      max-width: 400px;
       perspective: 1000px;
       padding: 0 10px;
       box-sizing: border-box;
@@ -27,12 +27,13 @@
 
     .card {
       width: 100%;
-      aspect-ratio: 336/223; /* 89×59 mm em px */
-      height: auto;
+      aspect-ratio: 223/336;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s;
+      height: auto;
     }
+
     .card.girado {
       transform: rotateY(180deg);
     }
@@ -50,7 +51,7 @@
       flex-direction: column;
     }
 
-    /* Frente (logo centrado) */
+    /* Frente: logo centrado */
     .card-face.front {
       background: #6BC9CC;
       justify-content: center;
@@ -64,28 +65,29 @@
       align-items: center;
     }
     .card-face.front .logo img {
-      width: 160px;
-      max-width: 80%;
+      width: 120px;
+      max-width: 70%;
       height: auto;
       display: block;
     }
 
-    /* Verso */
+    /* Verso: conteúdo centrado verticalmente */
     .card-face.back {
       background: #fff;
       transform: rotateY(180deg);
-      padding: 30px 30px 100px; /* espaço para footer e botão */
+      padding: 20px 20px 80px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
+      align-items: flex-start;
     }
     .card-face.back::before {
       content: "";
       position: absolute;
       top: 0; right: 0;
-      width: 200px; height: 200px;
+      width: 150px; height: 150px;
       background: url('marcadeagua.png') no-repeat center center;
       background-size: contain;
       opacity: 0.08;
@@ -98,48 +100,50 @@
     }
 
     .content {
-      flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      gap: 15px;
+      gap: 12px;
       width: 100%;
     }
 
+    /* Aumentado o tamanho da letra em .info */
     .info {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
       color: #555;
-      font-size: 22px;
+      font-size: 20px; /* antes 18px */
     }
     .info i {
-      font-size: 18px;
+      font-size: 1.4rem;
       color: #5ecdcf;
-      margin-top: 3px;
+      margin-top: 4px;
+      min-width: 24px;
+      text-align: center;
     }
     .info a {
       color: inherit;
       text-decoration: none;
     }
 
+    /* Margem maior entre info e botão */
     .actions {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 15px;
+      gap: 16px;
+      margin-top: 24px; /* antes 16px */
     }
     .actions a {
       background: #5ecdcf;
       color: #fff;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 4px;
       font-weight: 600;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
     }
 
-    /* Footer absoluto na base */
+    /* Footer permanece igual; link do website branco */
     .footer {
       position: absolute;
       bottom: 0; left: 0;
@@ -148,19 +152,24 @@
       color: #fff;
       font-weight: 600;
       text-align: center;
-      padding: 10px;
+      padding: 8px;
       border-radius: 0 0 8px 8px;
       z-index: 1;
       box-sizing: border-box;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #fff;
+      text-decoration: none;
     }
 
-    /* Responsive */
     @media (max-width: 400px) {
       .card-container { padding: 0 5px; }
-      .card-face.back { padding: 20px 20px 80px; }
-      .card-face.front .logo img { width: 120px; }
-      .info { font-size: 18px; gap: 8px; }
-      .actions a, .footer { font-size: 14px; padding: 6px 10px; }
+      .card-face.back { padding: 15px 15px 60px; }
+      .card-face.front .logo img { width: 100px; }
+      .info { font-size: 18px; gap: 6px; } /* ajustado proporcionalmente */
+      .actions a { font-size: 12px; padding: 4px 8px; }
+      .footer { padding: 6px; font-size: 12px; }
     }
   </style>
 
@@ -172,14 +181,11 @@
       document.querySelector('.card').classList.toggle('girado');
     }
   </script>
-
-  <!-- FontAwesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <div class="card-container" onclick="flipCard()">
     <div class="card">
-
       <!-- Frente -->
       <div class="card-face front">
         <div class="logo">
@@ -190,42 +196,31 @@
       <!-- Verso -->
       <div class="card-face back">
         <div class="content">
-          <div class="info">
-            <i class="fas fa-phone"></i>
+          <div class="info"><i class="fas fa-phone fa-2x"></i>
             <a href="tel:+351217576038">(+351) 217 576 038</a>
+			<p> Chamada para rede...</p>
           </div>
-          <div class="info">
-            <i class="fab fa-whatsapp"></i>
+          <div class="info"><i class="fab fa-whatsapp fa-2x"></i>
             <a href="https://wa.me/351937894736" target="_blank">(+351) 937 894 736</a>
           </div>
-          <div class="info">
-            <i class="fas fa-envelope-open-text"></i>
+          <div class="info"><i class="fas fa-envelope-open-text fa-2x"></i>
             <a href="mailto:info@fiveclinic.pt">info@fiveclinic.pt</a>
           </div>
-          <div class="info">
-            <i class="fas fa-home"></i>
+          <div class="info"><i class="fas fa-home fa-2x"></i>
             <span>Avenida Duque de Loulé, n.º47, 3.º Dto.<br>1050-086 Lisboa</span>
-          </div>
-
-          <!-- Botões de ação -->
-          <div class="actions">
-            <!-- Download vCard -->
-            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AFive%20Clinic%0AORG%3AFive%20Clinic%0ATEL%3BCELL%3A%2B351937894736%0ATEL%3BWORK%2CVOICE%3A%2B351217576038%0AEMAIL%3Ainfo%40fiveclinic.pt%0AADR%3BWORK%3A%3B%3BAvenida%20Duque%20de%20Loul%C3%A9%2C%20n.%C2%BA47%2C%203.%C2%BA%20Dto.%3BLisboa%3B%3B1050-086%3BPortugal%0AURL%3Ahttps%3A%2F%2Fwww.fiveclinic.pt%0AEND%3AVCARD%0A" download="fiveclinic.vcf">
-              Adicionar contacto
-            </a>
-            <!-- QR code link para mesmo vCard -->
-            <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AFive%20Clinic%0AORG%3AFive%20Clinic%0ATEL%3BCELL%3A%2B351937894736%0ATEL%3BWORK%2CVOICE%3A%2B351217576038%0AEMAIL%3Ainfo%40fiveclinic.pt%0AADR%3BWORK%3A%3B%3BAvenida%20Duque%20de%20Loul%C3%A9%2C%20n.%C2%BA47%2C%203.%C2%BA%20Dto.%3BLisboa%3B%3B1050-086%3BPortugal%0AURL%3Ahttps%3A%2F%2Fwww.fiveclinic.pt%0AEND%3AVCARD%0A" download="fiveclinic.vcf">
-              <img class="qr-code" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAA..." alt="QR Code Adicionar Contacto" style="width:40px; height:auto;">
-            </a>
           </div>
         </div>
 
-        <!-- Footer -->
+        <div class="actions">
+          <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AFive%20Clinic%0AORG%3AFive%20Clinic%0ATEL%3BCELL%3A%2B351937894736%0ATEL%3BWORK%2CVOICE%3A%2B351217576038%0AEMAIL%3Ainfo%40fiveclinic.pt%0AADR%3BWORK%3A%3B%3BAvenida%20Duque%20de%20Loul%C3%A9%2C%20n.%C2%BA47%2C%203.%C2%BA%20Dto.%3BLisboa%3B%3B1050-086%3BPortugal%0AURL%3Ahttps%3A%2F%2Fwww.fiveclinic.pt%0AEND%3AVCARD%0A" download="fiveclinic.vcf">
+            Adicionar contacto
+          </a>
+        </div>
+
         <div class="footer">
           <a href="https://www.fiveclinic.pt" target="_blank">WWW.FIVECLINIC.PT</a>
         </div>
       </div>
-
     </div>
   </div>
 </body>
